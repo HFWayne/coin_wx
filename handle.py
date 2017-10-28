@@ -19,7 +19,7 @@ class Handle(object):
                 fromUser = recMsg.ToUserName
                 myMaterial = Material()
                 accessToken = Basic().get_access_token()
-                mediaType = "news"
+                mediaType = "image"
                 myMaterial.batch_get(accessToken, mediaType)
                 if recMsg.MsgType == 'text':
                     content = "test"
