@@ -26,6 +26,7 @@ class Handle(object):
                     media_list_str = myMaterial.batch_get(accessToken, mediaType)
                     media_list = json.loads(media_list_str)
                     print '111111111111111111111111'
+                    print media_list
                     for media in media_list['item']:
                         print '333333333333333333333'
                         print media
