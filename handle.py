@@ -24,18 +24,21 @@ class Handle(object):
                     accessToken = Basic().get_access_token()
                     mediaType = "image"
                     media_list_str = myMaterial.batch_get(accessToken, mediaType)
-                    mediaId = None
-                    print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                    print type(media_list_str)
                     media_list = json.loads(media_list_str)
-                    print media_list
                     for media in media_list['item']:
-                        print media
+                        target = recMsg.Content
+                        if len(target) is not 8:
+                            media_id = None
+                        else:
+                            if media['name'].find(target) is not -1:
+                                media_id = media['media_id']
+                            else:
+                                media_id = None
 
-                    if mediaId is not None:
-                        mediaId = recMsg.MediaId
-                        replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
+                    if media_list is not None:
+                        replyMsg = reply.ImageMsg(toUser, fromUser, media_list)
                         return replyMsg.send()
+
                     else:
                         content = "查询无结果!"
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
