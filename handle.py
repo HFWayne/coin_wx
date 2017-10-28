@@ -4,6 +4,9 @@ import hashlib
 import reply
 import receive
 import web
+from basic import Basic
+from material import Material
+
 
 class Handle(object):
     def POST(self):
@@ -14,6 +17,10 @@ class Handle(object):
             if isinstance(recMsg, receive.Msg):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
+                myMaterial = Material()
+                accessToken = Basic().get_access_token()
+                mediaType = "news"
+                myMaterial.batch_get(accessToken, mediaType)
                 if recMsg.MsgType == 'text':
                     content = "test"
                     replyMsg = reply.TextMsg(toUser, fromUser, content)
