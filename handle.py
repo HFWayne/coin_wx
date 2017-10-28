@@ -52,7 +52,7 @@ class Handle(object):
                         欢迎使用钱币鉴定查询,请输入DRS编码!
                         示例:00000001
                         """
-                        replyMsg = reply.TextMsg(toUser, fromUser)
+                        replyMsg = reply.TextMsg(toUser, fromUser, content)
                         return replyMsg.send()
                     else:
                         reply.Msg().send()
