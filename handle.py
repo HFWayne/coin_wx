@@ -17,21 +17,46 @@ class Handle(object):
             if isinstance(recMsg, receive.Msg):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                myMaterial = Material()
-                accessToken = Basic().get_access_token()
-                mediaType = "image"
-                myMaterial.batch_get(accessToken, mediaType)
                 print recMsg.MsgType
                 if recMsg.MsgType == 'text':
-                    content = "test"
-                    replyMsg = reply.TextMsg(toUser, fromUser, content)
-                    return replyMsg.send()
+                    myMaterial = Material()
+                    accessToken = Basic().get_access_token()
+                    mediaType = "image"
+                    media_list = myMaterial.batch_get(accessToken, mediaType)
+                    mediaId = None
+                    print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                    for media in media_list["item"]:
+                        print media
+
+                    if mediaId is not None:
+                        mediaId = recMsg.MediaId
+                        replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
+                        return replyMsg.send()
+                    else:
+                        content = "查询无结果!"
+                        replyMsg = reply.TextMsg(toUser, fromUser, content)
+                        return replyMsg.send()
+
                 if recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
                     replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
                     return replyMsg.send()
                 else:
                     return reply.Msg().send()
+            elif isinstance(recMsg, receive.EventMsg):
+                toUser = recMsg.FromUserName
+                fromUser = recMsg.ToUserName
+                if recMsg.Event == 'CLICK':
+                    if recMsg.EventKey == "SearchSDR":
+                        content = """
+                        欢迎使用钱币鉴定查询,请输入DRS编码!
+                        示例:00000001
+                        """
+                        replyMsg = reply.TextMsg(toUser, fromUser)
+                        return replyMsg.send()
+                    else:
+                        reply.Msg().send()
+
             else:
                 print "暂且不处理"
                 return reply.Msg().send()

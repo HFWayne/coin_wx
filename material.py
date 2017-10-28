@@ -60,6 +60,7 @@ class Material(object):
                     % (mediaType, offset, count))
         urlResp = urllib2.urlopen(postUrl, postData)
         print urlResp.read()
+        return urlResp
 
 
 if __name__ == '__main__':
