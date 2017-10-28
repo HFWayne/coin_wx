@@ -25,27 +25,25 @@ class Handle(object):
                     mediaType = "image"
                     media_list_str = myMaterial.batch_get(accessToken, mediaType)
                     media_list = json.loads(media_list_str)
-                    print '111111111111111111111111'
                     print media_list
+                    if media_list['errcode'] is not None:
+                        print media_list['errmsg']
+                        replyMsg = reply.TextMsg(toUser, fromUser, "查询失败!")
+                        return replyMsg.send()
                     for media in media_list['item']:
-                        print '333333333333333333333'
                         print media
                         target = recMsg.Content
                         print target
                         print type(target)
                         if len(target) is not 8:
-                            print '4444444444444444'
                             media_id = None
                         else:
-                            print '5555555555555555555'
                             if media['name'].find(target) is not -1:
-                                print '66666666666666666666'
                                 media_id = media['media_id']
                                 print media_id
                             else:
                                 media_id = None
 
-                    print '222222222222222222222'
                     print media_id
                     if media_id is not None:
                         replyMsg = reply.ImageMsg(toUser, fromUser, media_id)
