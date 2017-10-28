@@ -59,8 +59,7 @@ class Material(object):
         postData = ("{ \"type\": \"%s\", \"offset\": %d, \"count\": %d }"
                     % (mediaType, offset, count))
         urlResp = urllib2.urlopen(postUrl, postData)
-        print urlResp.read()
-        return urlResp
+        return urlResp.read()
 
 
 if __name__ == '__main__':
