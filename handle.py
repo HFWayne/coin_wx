@@ -27,12 +27,20 @@ class Handle(object):
                     media_list = json.loads(media_list_str)
                     print '111111111111111111111111'
                     for media in media_list['item']:
+                        print '333333333333333333333'
+                        print media
                         target = recMsg.Content
+                        print target
+                        print type(target)
                         if len(target) is not 8:
+                            print '4444444444444444'
                             media_id = None
                         else:
+                            print '5555555555555555555'
                             if media['name'].find(target) is not -1:
+                                print '66666666666666666666'
                                 media_id = media['media_id']
+                                print media_id
                             else:
                                 media_id = None
 
