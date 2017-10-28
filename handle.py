@@ -25,6 +25,7 @@ class Handle(object):
                     mediaType = "image"
                     media_list_str = myMaterial.batch_get(accessToken, mediaType)
                     media_list = json.loads(media_list_str)
+                    print '111111111111111111111111'
                     for media in media_list['item']:
                         target = recMsg.Content
                         if len(target) is not 8:
@@ -35,16 +36,16 @@ class Handle(object):
                             else:
                                 media_id = None
 
-                    if media_list is not None:
-                        replyMsg = reply.ImageMsg(toUser, fromUser, media_list)
+                    print '222222222222222222222'
+                    print media_id
+                    if media_id is not None:
+                        replyMsg = reply.ImageMsg(toUser, fromUser, media_id)
                         return replyMsg.send()
-
                     else:
                         content = "查询无结果!"
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
                         return replyMsg.send()
-
-                if recMsg.MsgType == 'image':
+                elif recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
                     replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
                     return replyMsg.send()
