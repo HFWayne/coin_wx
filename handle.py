@@ -31,6 +31,7 @@ class Handle(object):
                         print media_list['errmsg']
                         replyMsg = reply.TextMsg(toUser, fromUser, "查询失败!")
                         return replyMsg.send()
+                    print '2222222222'
                     for media in media_list['item']:
                         print media
                         target = recMsg.Content
