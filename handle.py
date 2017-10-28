@@ -43,6 +43,7 @@ class Handle(object):
                             if media['name'].find(target) is not -1:
                                 media_id = media['media_id']
                                 print media_id
+                                break
                             else:
                                 media_id = None
 
