@@ -21,6 +21,7 @@ class Handle(object):
                 accessToken = Basic().get_access_token()
                 mediaType = "image"
                 myMaterial.batch_get(accessToken, mediaType)
+                print recMsg.MsgType
                 if recMsg.MsgType == 'text':
                     content = "test"
                     replyMsg = reply.TextMsg(toUser, fromUser, content)
