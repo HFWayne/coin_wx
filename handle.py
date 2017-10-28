@@ -25,9 +25,8 @@ class Handle(object):
                     media_list = myMaterial.batch_get(accessToken, mediaType)
                     mediaId = None
                     print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                    print media_list
                     print type(media_list)
-                    for media in media_list["item"]:
+                    for media in media_list['item']:
                         print media
 
                     if mediaId is not None:
