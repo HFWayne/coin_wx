@@ -26,6 +26,7 @@ class Handle(object):
                     mediaId = None
                     print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     print media_list
+                    print type(media_list)
                     for media in media_list["item"]:
                         print media
 
