@@ -65,4 +65,10 @@ class Material(object):
 if __name__ == '__main__':
     myMaterial = Material()
     accessToken = Basic().get_access_token()
-    myMaterial.uplaod(accessToken,  "./image/SDR00000001.jpeg", "image")
+    #myMaterial.uplaod(accessToken, "./image/SDR00000001.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000002.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000003.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000004.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000005.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000006.jpeg", "image")
+    myMaterial.uplaod(accessToken, "./image/SDR00000007.jpg", "image")
