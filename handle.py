@@ -6,6 +6,7 @@ import receive
 import web
 from basic import Basic
 from material import Material
+import json
 
 
 class Handle(object):
@@ -22,10 +23,12 @@ class Handle(object):
                     myMaterial = Material()
                     accessToken = Basic().get_access_token()
                     mediaType = "image"
-                    media_list = myMaterial.batch_get(accessToken, mediaType)
+                    media_list_str = myMaterial.batch_get(accessToken, mediaType)
                     mediaId = None
                     print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                    print type(media_list)
+                    print type(media_list_str)
+                    media_list = json.loads(media_list_str)
+                    print media_list
                     for media in media_list['item']:
                         print media
 
